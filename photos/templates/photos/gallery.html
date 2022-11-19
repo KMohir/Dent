@@ -1,0 +1,259 @@
+{% extends "index.html" %}
+{% load static %}
+        {% block gallery %}
+  <!-- country section -->
+
+<section id="country_section" class="country_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+         Основные направления деятельности компании {% if request.user.is_staff %}<a href="{% url 'add' %}">+</a>{% endif %}
+      </h2>
+
+
+
+
+
+    <div class="row">
+      {% for photo in photos %}
+      <div class="col-md-4 filter {% if photo.category %}{{photo.category|slugify}}{% else %}Awesome{% endif %}">
+        <a href="{{photo.image.url}}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{{photo.image.url}}" alt="">
+          <div class="detail-box">
+            <h3>
+              {% if photo.description%}{{photo.description}}{% endif %}
+            </h3>
+          </div>
+        </a>
+        {% if request.user.is_staff %}<form class="" action="{% url 'delete_photo' photo.id %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <button type="submit" class="border-0 bg-white"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <a href="{% url 'update_photo' photo.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        </form>{% endif %}
+      </div>
+      {% endfor %}
+
+</section>
+
+  <!-- end country section -->
+  <!-- service section -->
+
+  <section id="service_section" class="service_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Вопросы и ответы
+        </h2>
+      </div>
+
+      <div class="row">
+                <div class="col-md-6">
+          <div class="box ">
+            <div class="img-box">
+              <strong><h5>Что мы делаем: виды работ и измерений?</h5></strong>
+              <p>1. Проектирование инженерных систем. Экономия затрат на монтаж инженерных систем за счет оптимального проекта коммуникаций<br> Испытания и проверка электроустановок. Применяем современное испытательное оборудование и прибороы.
+                  <br>2. Поиск кабельной трассы, повреждений.  Производим локализацию зоны повреждения до 10 см в кратчайшие сроки.
+                  <br>3. Анализ качества электроэнергии.
+                  <br>4. Тепловизионная проверка. Обследуем здания, сооружения, электроустановки и электрооборудование.
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box ">
+            <div class="img-box">
+              <strong><h5>Зачем регулярно проводить профилактические измерения?</h5></strong>
+              <p>Статистика говорит, что, например, РЩ-0,4 без периодической профилактики, примерно, на 62 процента чаще выходят из строя.
+
+Более того, производственный опыт показывает, что оборудование работает дольше и эффективнее при наличии программы регулярного технического обслуживания. Совокупная стоимость эксплуатации электрооборудования сводится к минимуму при проведении регулярного ППР через определенные промежутки времени.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box ">
+            <div class="img-box">
+            <strong><h5>Что включает профилактика?</h5></strong>
+              <p>Перечень профилактических испытаний составлен на основании нормативных документов, ПТЭЭП, прил. 3, табл. 28 «Электроу­становки, аппараты, вторичные цепи, нормы испытаний которых не определены в разде­лах 2-27, и электропроводки напряжением до 1000 В» ПТЭЭП п. 3.6.2.
+
+                <br>визуальный осмотр электроустановки, проверка соответствия монтажа проектной документации;
+
+                <br>проверка сопротивления изоляции проводов, кабелей и обмоток электрич. машин;</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="box ">
+      <div class="img-box">
+            <strong><h5>Какой преимущества наший компание</h5></strong>
+            <p>чётко прописываем рабочие обязательства и несём финансовую ответственность;
+              <br>предоставляем гарантийные обязательства на проведённые работы;
+              <br>самые выгодные, конкурентные цены;
+              <br>даём гарантию прохождения проверок надзорных органов на 99%;
+              <br>возможность заключения договора на месте;
+              <br>проведении испытаний электрооборудования мы подготовим для вас персональный рабочий договор на эксплуатационные испытания
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+  <!-- about section -->
+  <section id="about_section" class="about_section layout_padding">
+
+    <div class="container">
+      <div class="row">
+        <div class="middle">
+          <div class="img_container">
+            <div class="img-box">
+              <span>
+
+              </span>
+            </div>
+          </div>
+        </div>
+ <div class="col-lg-6 px-0">
+          <div class="detail-box">
+            <div class="heading_container ">
+              <h2>
+                Кто Мы такие?
+              </h2>
+            </div>
+            <p>
+              Базовое направление Инженерной Компании «DEND MONTAJ SERVIS ЧП» – производство испытаний электроустановок, кабельных линий, электрических машин всех типов и напряжений, поиск кабеля и определение повреждения в кабеле.
+
+  Мы проводим тепловизионное обследование электрооборудования, контактных соединений и зданий, а также выполняем анализ качества электроэнергии.
+
+  Выполняем приемо-сдаточные испытания, контрольные, сличительные, эксплуатационные, сертификационные, измерения в жилых и нежилых помещениях с обязательным предоставлением технического отчета
+            </p>
+            <div class="btn-box">
+              <a href="#service_section">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+
+  </section>
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 px-0">
+          <div class="img_container">
+            <div class="img-box">
+
+            </div>
+
+
+  </section>
+
+  <!-- end about section -->
+  <!-- contact section -->
+  <section id="contact_section" class="contact_section layout_padding">
+    <div class="contact_bg_box">
+      <img src="{% static 'images/cont.jpg' %}" alt="">
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          связаться с нами
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-9 mx-auto">
+          <div class="form_container">
+            <form  method='POST' action="" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input required id="id_first_name" name="first_name" type="text" class="form-control" placeholder="Имя" />
+                </div>
+                <div class="form-group col-md-6">
+                  <input id="id_last_name" name="last_name" type="text" class="form-control" placeholder="Фамилия" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input required id="id_email"  name="email" type="text" class="form-control" placeholder="Номер телефона" />
+                </div>
+                <div class="form-group col-md-6">
+                  <input required id="id_subject" name="subject" type="text" class="form-control" placeholder="Предмет" />
+                </div>
+              </div>
+              <div class="form-group ">
+                <input required id="id_message" name="message" type="text" class="message-box" placeholder="Сообщение" />
+              </div>
+              <div class="btn-box">
+                <button type="submit">Отправить</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+  <!-- client section -->
+
+  <section id="client_section"  class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h5>
+          Наша команда
+        </h5>
+        <p>У нас есть целеустремленная и прилежная команда квалифицированных специалистов с соответствующим опытом в данной области, которые служат строительными блоками организации.
+Чтобы идти в ногу с развивающимися технологиями в этой области, мы проводим частые тренинги для наших сотрудников.</p>
+        <h2>
+         Что говорит наши Клиент{% if request.user.is_staff %}<a href="{% url 'add_team' %}">+</a>{% endif %}
+        </h2>
+      </div>
+      <div class="client_container">
+        <div class="carousel-wrap ">
+          <div class="owl-carousel">
+            {% for team in team %}
+            <div class="item">
+              <div class="box">
+                <div class="img-box">
+                  <img src="{{team.image.url}}" alt="" class="img-1">
+                </div>
+            {% if request.user.is_staff %}<form class="position-absolute" action="{% url 'delete_team' team.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+              <a href="{% url 'update_team' team.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <button type="submit" class="border-0 bg-white"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              </form>{% endif %}
+                <div class="detail-box">
+                  <h5>
+                    {{team.name}}
+                  </h5>
+                  <span>
+                    {% if team.whatsapp_url %}<a href="https://wa.me/+91{{team.whatsapp_url}}" target="_blank"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.facebook_url %}<a href="{{team.facebook_url}}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.youtube_url %}<a href="{{team.youtube_url}}" target="_blank"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.twitter_url %}<a href="{{team.twitter_url}}" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.linkedin_url %}<a href="{{team.linkedin_url}}" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.instagram_url %}<a href="{{team.instagram_url}}" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.whatsapp_url%}<a href="tel:{{team.whatsapp_url}}" target="_blank"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a>{% endif %}
+                    </span>
+                  <p>
+                   {% if team.description%}{{team.description}}{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+
+        {% endblock %}
